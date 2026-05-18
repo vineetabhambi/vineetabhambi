@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vineeta Bhambi — Brand & Creative Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0F0D0B;
+  --cream: #F7F3EC;
+  --warm: #FAF7F2;
+  --accent: #B85C2C;
+  --accent2: #D4885A;
+  --muted: #7A6F65;
+  --border: #E2D9CE;
+  --dark: #1A1612;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--warm);
+  color: var(--ink);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* CURSOR */
+.cursor { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s; }
+.cursor-trail { width: 32px; height: 32px; border: 1px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all 0.35s ease; opacity: 0.4; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(250,247,242,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; letter-spacing: 0.04em; text-decoration: none; color: var(--ink); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; font-family: 'DM Mono', monospace; }
+.nav-links a:hover { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  padding: 9rem 5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -15%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(184,92,44,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: up 0.9s ease forwards 0.1s;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.2rem, 5.5vw, 6rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: up 0.9s ease forwards 0.3s;
+}
+
+.hero-title em { font-style: italic; color: var(--accent); }
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 500px;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: up 0.9s ease forwards 0.5s;
+}
+
+.hero-cta {
+  display: flex; gap: 1rem;
+  opacity: 0;
+  animation: up 0.9s ease forwards 0.7s;
+}
+
+.btn {
+  padding: 0.9rem 2.2rem;
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  transition: all 0.25s;
+}
+
+.btn-fill { background: var(--ink); color: white; }
+.btn-fill:hover { background: var(--accent); transform: translateY(-2px); }
+.btn-ghost { border: 1px solid var(--border); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards 0.9s;
+  padding-left: 3rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.stat {
+  background: var(--cream);
+  padding: 1.75rem 1.5rem;
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--accent);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+  text-transform: uppercase;
+}
+
+/* DIVIDER */
+.rule { height: 1px; background: var(--border); margin: 0 5rem; }
+
+/* SECTIONS */
+section { padding: 7rem 5rem; }
+
+.sec-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.sec-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 560px;
+  margin-bottom: 4rem;
+  line-height: 1.8;
+}
+
+/* CASE STUDIES */
+.case { 
+  border: 1px solid var(--border);
+  margin-bottom: 2px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  background: var(--cream);
+  transition: border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.case::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
+  transform-origin: bottom;
+}
+
+.case:hover::before { transform: scaleY(1); }
+.case:hover { border-color: var(--accent2); }
+
+.case-meta {
+  padding: 2.5rem;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.case-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 300;
+  color: var(--border);
+  line-height: 1;
+}
+
+.case-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: white;
+  padding: 0.3rem 0.7rem;
+  display: inline-block;
+  width: fit-content;
+}
+
+.case-org {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.case-body { padding: 2.5rem; }
+
+.case-body h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.case-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+
+.case-points { list-style: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+
+.case-points li {
+  font-size: 0.88rem;
+  color: var(--ink);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.case-points li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+.case-result {
+  border-left: 3px solid var(--accent);
+  padding: 0.9rem 1.2rem;
+  background: var(--warm);
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.case-result strong { color: var(--accent); }
+
+/* PROOF IMAGES */
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 1.5rem;
+}
+
+.proof-img {
+  background: var(--warm);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.proof-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.4s ease;
+}
+
+.proof-img:hover img { transform: scale(1.03); }
+
+.proof-img-tall {
+  background: var(--warm);
+  overflow: hidden;
+}
+
+.proof-img-tall img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+
+.proof-img-tall:hover img { transform: scale(1.02); }
+
+.proof-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  margin-top: 1.5rem;
+}
+
+/* VIDEO SECTION */
+.creative-section { background: var(--ink); color: var(--cream); }
+.creative-section .sec-label { color: var(--accent2); }
+.creative-section .sec-title { color: var(--cream); }
+.creative-section .sec-sub { color: rgba(247,243,236,0.5); }
+
+.creative-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 2px;
+}
+
+.creative-card {
+  background: #1A1612;
+  padding: 2.5rem;
+  transition: background 0.3s;
+}
+
+.creative-card:hover { background: #221E19; }
+
+.creative-card .brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 0.25rem;
+  color: var(--cream);
+}
+
+.creative-card .brand-type {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 1.25rem;
+}
+
+.creative-card p { font-size: 0.88rem; color: rgba(247,243,236,0.6); line-height: 1.8; margin-bottom: 0.75rem; }
+
+.insight {
+  border-left: 2px solid var(--accent);
+  padding: 0.75rem 1rem;
+  font-size: 0.83rem;
+  font-style: italic;
+  color: var(--accent2);
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+/* VIDEO EMBED */
+.vid-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: #000;
+  margin-bottom: 1.25rem;
+}
+
+.vid-wrap.portrait {
+  padding-bottom: 177%;
+  max-width: 260px;
+}
+
+.vid-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* CONTENT SECTION */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.content-card {
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.content-card-label {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--cream);
+}
+
+.content-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.content-card-note {
+  padding: 1rem 1.25rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+}
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+.about-text p { font-size: 0.95rem; color: var(--muted); line-height: 1.9; margin-bottom: 1.25rem; }
+.about-text p strong { color: var(--ink); font-weight: 500; }
+
+.skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+
+.skill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.9rem;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+
+.skill:hover { border-color: var(--accent); color: var(--accent); }
+
+.edu-block {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.edu-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 0.25rem; }
+.edu-block .edu-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: block; }
+.edu-block p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+/* CONTACT */
+.contact-wrap {
+  background: var(--dark);
+  padding: 7rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.contact-wrap .sec-label { color: var(--accent2); }
+.contact-wrap .sec-title { color: var(--cream); }
+.contact-wrap .sec-sub { color: rgba(247,243,236,0.45); margin-bottom: 0; }
+
+.contact-links { display: flex; flex-direction: column; gap: 0; }
+
+.contact-link {
+  display: flex; align-items: center;
+  text-decoration: none;
+  color: var(--cream);
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: color 0.2s;
+  gap: 1rem;
+}
+
+.contact-link:hover { color: var(--accent2); }
+
+.cl-type {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.cl-val { font-size: 0.95rem; }
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 1.5rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ANIMATIONS */
+@keyframes up {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 1.2rem 2rem; }
+  .nav-links { gap: 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+  .hero-right { padding-left: 0; }
+  section { padding: 4rem 2rem; }
+  .rule { margin: 0 2rem; }
+  .case { grid-template-columns: 1fr; }
+  .case-meta { border-right: none; border-bottom: 1px solid var(--border); }
+  .creative-grid { grid-template-columns: 1fr; }
+  .content-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 2rem; }
+  footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  .proof-grid { grid-template-columns: 1fr 1fr; }
+  body { cursor: auto; }
+  .cursor, .cursor-trail { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-trail" id="trail"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Vineeta Bhambi</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#creative">Creative</a></li>
+    <li><a href="#content">Content</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-eyebrow">Brand · Strategy · Culture</p>
+    <h1 class="hero-title">Where strategy<br>meets <em>soul.</em></h1>
+    <p class="hero-sub">I'm Vineeta — a final-year Economics student who spent the last year doing the work most people wait until after graduation to do. I build brands, communities, and systems in the space where culture, women's narratives, and mental health meet.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-fill">See My Work</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stats-grid">
+      <div class="stat">
+        <span class="stat-num">₹3L+</span>
+        <span class="stat-label">Revenue generated</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Teams managed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">45</span>
+        <span class="stat-label">Days to promotion</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">6K+</span>
+        <span class="stat-label">Content views</span>
+      </div>
+    </div>
+    <p class="hero-note">Based in Rajasthan · Open to remote & Jaipur/Delhi roles</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- WORK -->
+<section id="work">
+  <p class="sec-label reveal">Selected Work</p>
+  <h2 class="sec-title reveal">Case Studies</h2>
+  <p class="sec-sub reveal">Real work. Real thinking. Real outcomes — all while being a student.</p>
+
+  <!-- Case 1: Wizoona -->
+  <div class="case reveal">
+    <div class="case-meta">
+      <div class="case-num">01</div>
+      <span class="case-tag">Brand Strategy</span>
+      <p class="case-org">Wizoona (Stealth Startup)<br>via Foruppo Fellowship<br>Aug – Nov 2024</p>
+    </div>
+    <div class="case-body">
+      <h3>Building a mental health community brand from zero — at a pre-launch startup</h3>
+      <p>Wizoona is a stealth-mode startup building unconventional communities for students around taboo topics. I was one of the first interns and worked across brand strategy and community building simultaneously — before the product even launched.</p>
+      <ul class="case-points">
+        <li>Built the complete Meraki Mental Health Resource Kit on Notion — 10 sections, live published website covering wellness, coping strategies, creative expression, gamified check-ins, digital detox</li>
+        <li>Designed the full 7-day weekly content and engagement framework for the Meraki community</li>
+        <li>Wrote all WhatsApp community copy — 4+ weeks of announcements, polls, situation scenarios, game scripts</li>
+        <li>Hosted most virtual community games on Google Meet — Spin the Wheel, Mind Link, Legendary Persona Quest</li>
+        <li>Conducted SWOT analysis identifying platform risks and growth opportunities</li>
+        <li>Researched 15+ partnership organisations with outreach strategy and email pitch templates</li>
+        <li>Contributed to Instagram content strategy, blog/about us structure, onboarding strategy for 500 members</li>
+      </ul>
+      <div class="case-result">
+        <strong>What this shows:</strong> End-to-end community brand building — content strategy, UX writing, community management, partnership strategy, creative direction — at a pre-launch startup, as a student.
+      </div>
+      <div class="proof-grid">
+        <div class="proof-img"><img src="swot.png" alt="Wizoona SWOT Analysis"></div>
+        <div class="proof-img"><img src="wizoona_welcome.png" alt="Wizoona Welcome Kit"></div>
+        <div class="proof-img"><img src="meraki_kit.png" alt="Meraki WizKit on Notion"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 2: Vong -->
+  <div class="case reveal">
+    <div class="case-meta">
+      <div class="case-num">02</div>
+      <span class="case-tag">Project Management</span>
+      <p class="case-org">VONG (Sustainability NGO)<br>Growth Department<br>2024</p>
+    </div>
+    <div class="case-body">
+      <h3>Project Manager across 4 growth teams — with real approval authority</h3>
+      <p>At VONG I was PM for the entire Growth department's SS6 initiative — a multi-team operation spanning Retail, Channel, Corporates/Institutions, and SMEs & Schools. Nothing went out without my QA and approval first.</p>
+      <ul class="case-points">
+        <li>Held formal QA and approval authority — enforced strict chain: me → OPM → HR before any outreach</li>
+        <li>Maintained PM reports and trackers across all 4 teams simultaneously</li>
+        <li>Wrote the detailed VONG x HydraGreens collaboration plan — ₹5L crowdfunding goal, phased timeline, KPIs, budget allocation across afforestation sites</li>
+        <li>Identified risks and issued mitigation plans — including reactivating lapsed ANU partnership</li>
+        <li>Oversaw landing page QA — confirmation mail testing and data accuracy checks</li>
+        <li>Managed Lead Demand Documents and coordinated cross-team outreach protocols</li>
+      </ul>
+      <div class="case-result">
+        <strong>What this shows:</strong> Real cross-functional management with accountability and authority — not internship task execution. Operational leadership at a level most people reach after years of work.
+      </div>
+      <div class="proof-2col">
+        <div class="proof-img-tall"><img src="vong_collab.png" alt="VONG x HydraGreens Collaboration Plan"></div>
+        <div class="proof-img-tall"><img src="hrms_org.png" alt="HRMS System Design"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 3: Caasdi -->
+  <div class="case reveal">
+    <div class="case-meta">
+      <div class="case-num">03</div>
+      <span class="case-tag">Operations & Leadership</span>
+      <p class="case-org">Caasdi Global<br>Vendor Management Firm<br>45 Days · 2024</p>
+    </div>
+    <div class="case-body">
+      <h3>Promoted to Head HR Intern in 45 days — completed in days what others couldn't do in a year</h3>
+      <p>Joined as L&D HR intern. Within 45 days, was heading four teams simultaneously — Recruitment, Talent Acquisition, L&D, and L&D sub-team. When I left, management said I was the best intern they'd had and the only one who genuinely fit the head role.</p>
+      <ul class="case-points">
+        <li>Built the complete employee manual from scratch — done in days, attempted for over a year before me</li>
+        <li>Wrote and streamlined HR policies and community protocols</li>
+        <li>Designed a calendar system for team availability — discussed and approved directly with a founding member</li>
+        <li>Cleaned and structured the entire Google Drive — brought operational order to organisational chaos</li>
+        <li>Developed discipline in teams — held the lead, set standards, made people accountable</li>
+        <li>Also conceptualised an HRMS system at a parallel organisation — role-based dashboards, automated leave tracking, performance management, scalable to 10,000+ employees</li>
+      </ul>
+      <div class="case-result">
+        <strong>What this shows:</strong> I don't just execute tasks. I take ownership of outcomes — and I bring structure, discipline, and leadership to wherever I work.
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 4: Neetkakajee -->
+  <div class="case reveal">
+    <div class="case-meta">
+      <div class="case-num">04</div>
+      <span class="case-tag">Growth Marketing</span>
+      <p class="case-org">Neetkakajee (Cellcius)<br>Sales & Marketing Role<br>2024 · 2 Months · ₹18k CTC</p>
+    </div>
+    <div class="case-body">
+      <h3>₹3 Lakh in 2 months — full-funnel commercial marketing in a real salaried role</h3>
+      <p>My first real job. Hired as a sales and marketing executive. Operated across all three stages of the funnel simultaneously — a level of commercial exposure most freshers never get.</p>
+      <ul class="case-points">
+        <li>Executed WhatsApp marketing outreach as the first touchpoint — acquisition stage</li>
+        <li>Managed 250–300 outbound calls per day, converting pre-warmed leads — conversion stage</li>
+        <li>Answered student queries and maintained ongoing customer relationships — retention stage</li>
+        <li>Generated ₹3,00,000+ in revenue over 2 months</li>
+      </ul>
+      <div class="case-result">
+        <strong>What this shows:</strong> Real revenue. Real pressure. Real commercial accountability. Most marketing people understand one funnel stage. I did all three in one role.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- CREATIVE -->
+<section id="creative" class="creative-section">
+  <p class="sec-label reveal">Creative Direction</p>
+  <h2 class="sec-title reveal">Brand Concepts</h2>
+  <p class="sec-sub reveal">Speculative work showing how I think about brand, emotion, and audience. The concept, sound design, and visual logic are entirely mine.</p>
+
+  <div class="creative-grid">
+    <div class="creative-card reveal">
+      <div class="brand">Red Label Tea</div>
+      <div class="brand-type">FMCG · Emotional Brand · Spec Ad</div>
+      <div class="vid-wrap">
+        <iframe src="https://www.youtube.com/embed/2VrrLvdVmZw" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p>The brief I set myself: make tea the hero of conflict resolution. Based on a real cultural observation — in Indian households, tea genuinely cools people down after arguments.</p>
+      <p>Built the entire emotional arc through sound design — raw street noise during the fight, soft sounds of boiling, pouring, grating ginger as tea brews, quiet ambience as conflict resolves. No dramatic music. Sound does the storytelling.</p>
+      <div class="insight">"Swad Apnapan Ka" isn't just a tagline — it's a cultural truth. Tea in India is how people say sorry without saying sorry.</div>
+    </div>
+
+    <div class="creative-card reveal">
+      <div class="brand">Titan Nebula</div>
+      <div class="brand-type">Luxury Watches · Brand Equity · Spec Ad</div>
+      <div class="vid-wrap portrait">
+        <iframe src="https://www.youtube.com/embed/Cb-YXXikML4" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p>Built around the double entendre of "showing time" — both as a literal function of a timepiece and a metaphorical indicator of personal status and legacy.</p>
+      <p>Macro shots, zero transitions, hard clean cuts. The only sound is the tick of the watch. Silence and stillness are the luxury signal.</p>
+      <div class="insight">Luxury is communicated through what you leave out, not what you put in.</div>
+    </div>
+  </div>
+
+  <div class="creative-grid" style="margin-top:2px;">
+    <div class="creative-card reveal">
+      <div class="brand">Timeless Silence</div>
+      <div class="brand-type">Short Film · Women's Safety · Social Issue</div>
+      <div class="vid-wrap">
+        <iframe src="https://www.youtube.com/embed/xBzjUf74EJE" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p>A short film on women's safety — conceptualised and directed by me. The decisions about tone, pacing, what to show and what to leave unsaid are human decisions. Tools are secondary to concept.</p>
+      <div class="insight">A social issue film works when it makes people feel something they weren't expecting to feel.</div>
+    </div>
+
+    <div class="creative-card reveal">
+      <div class="brand">WordPress — Love Life</div>
+      <div class="brand-type">Mental Health · Web Project · Foruppo Fellowship</div>
+      <p style="margin-top:1rem;">A website on mental and emotional health built during the Foruppo fellowship. The name "Love Life" is a deliberate wordplay — loving life and love's relationship with life.</p>
+      <p>Conceptualised the content architecture, brand voice, and visual structure independently.</p>
+      <a href="https://vineetabhambi.wordpress.com" target="_blank" class="btn btn-ghost" style="margin-top:1rem; display:inline-block; border-color:rgba(255,255,255,0.2); color:var(--cream);">View Live Site →</a>
+      <div class="insight">Every product starts with a point of view. This one started with the belief that mental health deserves beauty, not clinical sterility.</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- CONTENT -->
+<section id="content">
+  <p class="sec-label reveal">Content & Voice</p>
+  <h2 class="sec-title reveal">Personal Accounts</h2>
+  <p class="sec-sub reveal">Two accounts. Two voices. Both mine — showing range across emotional and analytical content.</p>
+
+  <div class="content-grid">
+    <div class="content-card reveal">
+      <div class="content-card-label">Quotesphere1031 · Hindi Poetry & Quotes · Since 2022</div>
+      <img src="quotesphere.png" alt="Quotesphere1031 Instagram">
+      <div class="content-card-note">Built and scaled from scratch. Top post: 6K+ views, 152 likes. Multiple reels crossing 4K–6K views. Original Hindi writing — literary devices, metaphor, emotional resonance. Consistent content voice that earned organic engagement from a cold audience.</div>
+    </div>
+    <div class="content-card reveal">
+      <div class="content-card-label">Vishhh247 · Cultural & Social Commentary · Current</div>
+      <img src="vishhh247.png" alt="Vishhh247 Instagram">
+      <div class="content-card-note">Black aesthetic. Analytical cultural commentary on patriarchy, caste, gender, religion, and social inequality. Original quotes, carousel posts, and collab reels with social workers. Every post is a considered point of view — not content for content's sake.</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="sec-label">About</p>
+      <h2 class="sec-title">Why I do this</h2>
+      <div class="about-text">
+        <p>I studied Economics — which means I think in systems, incentives, and cause-and-effect. But what actually excites me is <strong>how brands make people feel</strong>, and whether that feeling connects to something real in culture.</p>
+        <p>I've done telesales, community building, partnership outreach, content strategy, creative direction, HR systems design, and project management. Not because I was unfocused — but because I wanted to understand how the whole thing works before I specialised.</p>
+        <p>Now I'm focused. <strong>Culture, women's narratives, and mental health — through brand and creative strategy.</strong> I want to work somewhere that builds things that mean something.</p>
+        <p>I've been communicating in front of large audiences since school — debates, hosting events, directing plays. I think in narratives, not bullet points. And I write in both Hindi and English with equal fluency.</p>
+      </div>
+      <div class="skills">
+        <span class="skill">Brand Strategy</span>
+        <span class="skill">Creative Direction</span>
+        <span class="skill">Content Strategy</span>
+        <span class="skill">Community Building</span>
+        <span class="skill">Partnership Research</span>
+        <span class="skill">WhatsApp Marketing</span>
+        <span class="skill">Project Management</span>
+        <span class="skill">SWOT Analysis</span>
+        <span class="skill">Sound Design</span>
+        <span class="skill">Agile / Scrum</span>
+        <span class="skill">AI Tools</span>
+        <span class="skill">Excel</span>
+        <span class="skill">Notion</span>
+        <span class="skill">Canva</span>
+        <span class="skill">Public Speaking</span>
+        <span class="skill">Hindi & English</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="edu-block">
+        <h4>BA Economics (Final Year)</h4>
+        <span class="edu-tag">6 Semesters · Core + Applied</span>
+        <p><strong>Economics:</strong> Micro & Macroeconomics · Business Economics · Indian Economics · Public Finance · Agriculture & Development Economics<br><br>
+        <strong>Quantitative:</strong> Calculus · Multivariate Calculus · Statistics (×2) · Real Analysis · Linear Algebra · Differential Equations · Analytical Skills<br><br>
+        <strong>Business & Marketing:</strong> Management · Finance · Marketing · E-Commerce · Digital Marketing · Selling Skills · Excel</p>
+      </div>
+      <div class="edu-block">
+        <h4>Project Management Fellowship</h4>
+        <span class="edu-tag">Foruppo · Aug–Nov 2024</span>
+        <p>Agile & Scrum · WordPress · Product Management · Value Proposition Design · Porter's Five Forces · Market Research · Startup Operations</p>
+      </div>
+      <div class="edu-block">
+        <h4>School — Communication & Performance</h4>
+        <span class="edu-tag">Interschool Level</span>
+        <p>Won debates, extempore, speech competitions · Directed plays · Hosted large events · Natural storyteller — hooks audiences, receives applause mid-speech · Fluent in Hindi and English with accent that shifts naturally</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="reveal">
+    <p class="sec-label">Contact</p>
+    <h2 class="sec-title">Let's work<br>together.</h2>
+    <p class="sec-sub">I'm looking for roles in brand marketing, creative strategy, or community building — remote or Jaipur/Delhi — where the work actually means something.</p>
+  </div>
+  <div class="contact-links reveal">
+    <a href="mailto:vineetabhambi@gmail.com" class="contact-link">
+      <div><span class="cl-type">Email</span><span class="cl-val">vineetabhambi@gmail.com</span></div>
+    </a>
+    <a href="tel:+916350551465" class="contact-link">
+      <div><span class="cl-type">Phone</span><span class="cl-val">+91 63505 51465</span></div>
+    </a>
+    <a href="https://linkedin.com/in/vineetabhambi" target="_blank" class="contact-link">
+      <div><span class="cl-type">LinkedIn</span><span class="cl-val">linkedin.com/in/vineetabhambi</span></div>
+    </a>
+    <a href="https://vineetabhambi.wordpress.com" target="_blank" class="contact-link">
+      <div><span class="cl-type">WordPress Project</span><span class="cl-val">vineetabhambi.wordpress.com</span></div>
+    </a>
+    <a href="https://notion.so/Meraki-WizKit-103ed01ef71c806cb094f618a4c574c2" target="_blank" class="contact-link">
+      <div><span class="cl-type">Live Project — Meraki WizKit</span><span class="cl-val">View on Notion →</span></div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Vineeta Bhambi</p>
+  <p>Brand & Creative Strategy · Culture · Women · Mental Health</p>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cur');
+const trail = document.getElementById('trail');
+let mx = 0, my = 0, tx = 0, ty = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px';
+  cur.style.top = my + 'px';
+});
+
+function animTrail() {
+  tx += (mx - tx) * 0.1;
+  ty += (my - ty) * 0.1;
+  trail.style.left = tx + 'px';
+  trail.style.top = ty + 'px';
+  requestAnimationFrame(animTrail);
+}
+animTrail();
+
+// Scroll reveal
+const els = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), i * 60);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
